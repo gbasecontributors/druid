@@ -75,6 +75,9 @@ public interface JdbcConstants {
     DbType GBASE                      = DbType.gbase;
     String GBASE_DRIVER               = "com.gbase.jdbc.Driver";
 
+    DbType GBASEDBT                   = DbType.gbasedbt;
+    String GBASEDBT_DRIVER            = "com.gbasedbt.jdbc.Driver";
+
     DbType XUGU                       = DbType.xugu;
     String XUGU_DRIVER                = "com.xugu.cloudjdbc.Driver";
 

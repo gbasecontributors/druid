@@ -25,6 +25,7 @@ import com.alibaba.druid.sql.ast.statement.SQLExprTableSource;
 import com.alibaba.druid.sql.ast.statement.SQLUpdateSetItem;
 import com.alibaba.druid.sql.ast.statement.SQLUpdateStatement;
 import com.alibaba.druid.sql.builder.SQLUpdateBuilder;
+import com.alibaba.druid.sql.dialect.gbasedbt.ast.stmt.GBasedbtUpdateStatement;
 import com.alibaba.druid.sql.dialect.mysql.ast.statement.MySqlUpdateStatement;
 import com.alibaba.druid.sql.dialect.oracle.ast.stmt.OracleUpdateStatement;
 import com.alibaba.druid.sql.dialect.postgresql.ast.stmt.PGUpdateStatement;
@@ -168,6 +169,8 @@ public class SQLUpdateBuilderImpl extends SQLBuilderImpl implements SQLUpdateBui
                 return new PGUpdateStatement();
             case sqlserver:
                 return new SQLServerUpdateStatement();
+            case gbasedbt:
+                return new GBasedbtUpdateStatement();
             default:
                 return new SQLUpdateStatement();
         }

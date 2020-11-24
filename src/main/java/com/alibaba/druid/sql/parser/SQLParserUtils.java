@@ -30,6 +30,8 @@ import com.alibaba.druid.sql.dialect.db2.ast.stmt.DB2SelectQueryBlock;
 import com.alibaba.druid.sql.dialect.db2.parser.DB2ExprParser;
 import com.alibaba.druid.sql.dialect.db2.parser.DB2Lexer;
 import com.alibaba.druid.sql.dialect.db2.parser.DB2StatementParser;
+import com.alibaba.druid.sql.dialect.gbasedbt.parser.GBasedbtLexer;
+import com.alibaba.druid.sql.dialect.gbasedbt.parser.GBasedbtStatementParser;
 import com.alibaba.druid.sql.dialect.h2.parser.H2ExprParser;
 import com.alibaba.druid.sql.dialect.h2.parser.H2Lexer;
 import com.alibaba.druid.sql.dialect.h2.parser.H2StatementParser;
@@ -137,6 +139,8 @@ public class SQLParserUtils {
                 return new AntsparkStatementParser(sql);
             case clickhouse:
                 return new ClickhouseStatementParser(sql);
+            case gbasedbt:
+                return new GBasedbtStatementParser(sql);
             default:
                 return new SQLStatementParser(sql, dbType);
         }
@@ -216,6 +220,8 @@ public class SQLParserUtils {
                 return new PrestoLexer(sql);
             case antspark:
                 return new AntsparkLexer(sql);
+            case gbasedbt:
+                return new GBasedbtLexer(sql);
             default:
                 return new Lexer(sql, null, dbType);
         }

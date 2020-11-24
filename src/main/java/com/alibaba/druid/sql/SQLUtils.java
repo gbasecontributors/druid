@@ -26,6 +26,8 @@ import com.alibaba.druid.sql.dialect.blink.vsitor.BlinkOutputVisitor;
 import com.alibaba.druid.sql.dialect.clickhouse.visitor.ClickhouseOutputVisitor;
 import com.alibaba.druid.sql.dialect.db2.visitor.DB2OutputVisitor;
 import com.alibaba.druid.sql.dialect.db2.visitor.DB2SchemaStatVisitor;
+import com.alibaba.druid.sql.dialect.gbasedbt.visitor.GBasedbtOutputVisitor;
+import com.alibaba.druid.sql.dialect.gbasedbt.visitor.GBasedbtSchemaStatVisitor;
 import com.alibaba.druid.sql.dialect.h2.visitor.H2OutputVisitor;
 import com.alibaba.druid.sql.dialect.h2.visitor.H2SchemaStatVisitor;
 import com.alibaba.druid.sql.dialect.hive.visitor.HiveOutputVisitor;
@@ -232,7 +234,13 @@ public class SQLUtils {
     public static String toOracleString(SQLObject sqlObject, FormatOption option) {
         return toSQLString(sqlObject, DbType.oracle, option);
     }
+    public static String toGBasedbtString(SQLObject sqlObject) {
+        return toOracleString(sqlObject, null);
+    }
 
+    public static String toGBasedbtString(SQLObject sqlObject, FormatOption option) {
+        return toSQLString(sqlObject, DbType.gbasedbt, option);
+    }
     public static String toPGString(SQLObject sqlObject) {
         return toPGString(sqlObject, null);
     }
@@ -494,6 +502,8 @@ public class SQLUtils {
                 return new AntsparkOutputVisitor(out);
             case clickhouse:
                 return new ClickhouseOutputVisitor(out);
+            case gbasedbt:
+                return new GBasedbtOutputVisitor(out);
             default:
                 return new SQLASTOutputVisitor(out, dbType);
         }
@@ -543,6 +553,8 @@ public class SQLUtils {
                 return new HiveSchemaStatVisitor(repository);
             case antspark:
                 return new AntsparkSchemaStatVisitor(repository);
+            case gbasedbt:
+                return new GBasedbtSchemaStatVisitor();
             default:
                 return new SchemaStatVisitor(repository);
         }

@@ -25,6 +25,7 @@ import com.alibaba.druid.sql.ast.statement.SQLDDLStatement;
 import com.alibaba.druid.sql.ast.statement.SQLSelectQueryBlock;
 import com.alibaba.druid.sql.ast.statement.SQLSelectStatement;
 import com.alibaba.druid.sql.dialect.db2.visitor.DB2OutputVisitor;
+import com.alibaba.druid.sql.dialect.gbasedbt.visitor.GBasedbtOutputVisitor;
 import com.alibaba.druid.sql.dialect.h2.visitor.H2OutputVisitor;
 import com.alibaba.druid.sql.dialect.mysql.ast.statement.MySqlInsertStatement;
 import com.alibaba.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
@@ -408,6 +409,8 @@ public class ParameterizedOutputVisitorUtils {
                 return new DB2OutputVisitor(out, true);
             case phoenix:
                 return new PhoenixOutputVisitor(out, true);
+            case gbasedbt:
+                return new GBasedbtOutputVisitor(out, true);
             default:
                 return new SQLASTOutputVisitor(out, true);
         }
